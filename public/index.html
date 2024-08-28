@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Bun Web App</title>
+  <style>
+    /* Configurar html y body para que ocupen toda la pantalla */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Asegurar que el padding no se sume al alto total */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* Evitar scroll en el cuerpo de la página */
+    }
+
+    /* El contenedor principal que debe ocupar toda la altura disponible */
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* Evitar que el contenedor cree scroll extra */
+    }
+
+    /* Hacer que el nav ocupe solo el espacio necesario */
+    nav {
+      background-color: #f8f9fa; /* Color de fondo del nav */
+      padding: 10px;
+      flex-shrink: 0; /* Evitar que el nav se reduzca */
+    }
+
+    /* Configurar el div console para ocupar todo el espacio sobrante */
+    #console {
+      flex-grow: 1;
+      overflow-y: auto; /* Permitir scroll si es necesario */
+      background-color: #e9ecef; /* Color de fondo del console */
+      /* padding: 10px; */
+      box-sizing: border-box; /* Incluir padding dentro del cálculo de altura */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Mantener el contenido en la parte superior */
+    }
+
+    /* Estilo adicional para el pre dentro del console */
+    #output {
+      white-space: pre-wrap; /* Mantener saltos de línea */
+      word-wrap: break-word; /* Ajustar texto largo */
+      flex-grow: 1; /* Asegura que el pre ocupe todo el espacio disponible */
+      margin: 0;
+    }
+
+    /* Estilo del pie de página */
+    footer {
+      background-color: #f8f9fa; /* Color de fondo del footer */
+      padding: 10px;
+      text-align: center;
+      flex-shrink: 0; /* Evitar que el footer se reduzca */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><button onclick="listDirectory()">List Directory</button></li>
+        <li><button onclick="pruebaCarga()">Prueba de carga</button></li>
+      </ul>
+    </nav>
+    <div id="console">
+      <pre id="output"></pre>
+    </div>
+    <footer>
+      Pie de página - Aquí puedes poner cualquier información adicional
+    </footer>
+  </div>
+  <script>
+    function listDirectory() {
+      const directory = prompt('Enter the directory to list:');
+      fetch(`/list-directory?dir=${encodeURIComponent(directory)}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('output').innerText = data;
+        })
+        .catch(error => {
+          document.getElementById('output').innerText = `Error: ${error}`;
+        });
+    }
+
+    function pruebaCarga() {
+      fetch(`/prueba-carga`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('output').innerText = data;
+        })
+        .catch(error => {
+          document.getElementById('output').innerText = `Error: ${error}`;
+        });
+    }
+  </script>
+</body>
+</html>

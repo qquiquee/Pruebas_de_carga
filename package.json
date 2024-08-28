@@ -1,0 +1,14 @@
+{
+  "name": "pfm",
+  "module": "app.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "scripts": {
+    "pru": "bun serverConsola.js"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
