@@ -6,7 +6,7 @@
     "@types/bun": "latest"
   },
   "scripts": {
-    "pru": "bun serverConsola.js"
+    "start": "bun serverConsola.js & bun serverPrueba.js"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

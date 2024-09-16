@@ -1,0 +1,253 @@
+[
+  {
+    "nombre": "pruebas_seguridad_1",
+    "rutaBase": "http://localhost:3000",
+    "descripcion": {
+      "titulo": "Pruebas de seguridad para /login",
+      "descripcion": "Simulaciones de ataques de seguridad en la ruta /login",
+      "fecha": "2024-09-06",
+      "llamadas": [
+        {
+          "ruta": "/login",
+          "descripcion": "Inyección SQL - intento de acceder con datos maliciosos",
+          "tipo_ataque": "inyección_sql",
+          "cuantas": 10,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "POST",
+          "adjunto": "' OR 1=1 --",
+          "id": "a1d2f563-1234-4d56-9876-1f2c3b4e6789"
+        },
+        {
+          "ruta": "/login",
+          "descripcion": "Ataque de fuerza bruta - múltiples intentos de inicio de sesión",
+          "tipo_ataque": "fuerza_bruta",
+          "cuantas": 100,
+          "bloque": 20,
+          "tipo": "paralelo",
+          "metodo": "POST",
+          "adjunto": "diccionario_contraseñas.txt",
+          "id": "b3c456d7-5678-4e89-1234-567890f123ab"
+        },
+        {
+          "ruta": "/login",
+          "descripcion": "Cross-Site Scripting (XSS) - inyección de script malicioso",
+          "tipo_ataque": "xss",
+          "cuantas": 50,
+          "bloque": 10,
+          "tipo": "paralelo",
+          "metodo": "POST",
+          "adjunto": "<script>alert('XSS')</script>",
+          "id": "c4d56789-2345-4567-8901-abcdef234567"
+        },
+        {
+          "ruta": "/login",
+          "descripcion": "Ataque DoS - múltiples solicitudes simultáneas para sobrecargar el servidor",
+          "tipo_ataque": "dos",
+          "cuantas": 1000,
+          "bloque": 100,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "d5e6789a-3456-5678-9012-3456f78901bc"
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "pruebas_seguridad_2",
+    "rutaBase": "http://localhost:3000",
+    "descripcion": {
+      "titulo": "Pruebas de seguridad para /api/data",
+      "descripcion": "Simulaciones de ataques en la ruta /api/data para evaluar la seguridad",
+      "fecha": "2024-09-06",
+      "llamadas": [
+        {
+          "ruta": "/api/data",
+          "descripcion": "Inyección SQL - intento de acceso no autorizado con payload malicioso",
+          "tipo_ataque": "inyección_sql",
+          "cuantas": 10,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "' OR 'a'='a' --",
+          "id": "e6f7890b-4567-6789-0123-456789012345"
+        },
+        {
+          "ruta": "/api/data",
+          "descripcion": "Ataque de denegación de servicio distribuido (DDoS) - miles de solicitudes simultáneas",
+          "tipo_ataque": "ddos",
+          "cuantas": 5000,
+          "bloque": 500,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "f7890cde-5678-7890-1234-567890abcdef"
+        },
+        {
+          "ruta": "/api/data",
+          "descripcion": "Cross-Site Scripting (XSS) - intento de inyectar script malicioso en el cuerpo de la solicitud",
+          "tipo_ataque": "xss",
+          "cuantas": 50,
+          "bloque": 10,
+          "tipo": "paralelo",
+          "metodo": "POST",
+          "adjunto": "<img src=x onerror=alert('XSS')>",
+          "id": "01234567-6789-8901-2345-6789abcdef01"
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "pruebas_health",
+    "rutaBase": "http://localhost:3000",
+    "descripcion": {
+      "titulo": "Pruebas de carga para /health",
+      "descripcion": "Diferentes pruebas de carga, en serie y en paralelo, para la ruta /health",
+      "fecha": "2024-09-06",
+      "llamadas": [
+        {
+          "ruta": "/health",
+          "descripcion": "Carga baja en serie - 50 llamadas",
+          "cuantas": 50,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "fe2d3253-689c-4674-bdae-8101eaf8cadb"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga media en serie - 100 llamadas",
+          "cuantas": 100,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "8d13f0c6-c428-4d76-90b9-8ff1e27a7dcd"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga alta en serie - 500 llamadas",
+          "cuantas": 500,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "156e789d-e6ee-4f8f-b6b9-ec8011e9c755"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga baja en paralelo - 100 llamadas en bloques de 10",
+          "cuantas": 100,
+          "bloque": 10,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "d02baea5-6a41-4184-a8c0-7efd6d256032"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga media en paralelo - 500 llamadas en bloques de 50",
+          "cuantas": 500,
+          "bloque": 50,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "7fa574cc-2a63-4d37-887c-734282b83262"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga alta en paralelo - 1000 llamadas en bloques de 100",
+          "cuantas": 1000,
+          "bloque": 100,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "7f36f309-2193-4b07-aabf-a323f01d1113"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga muy alta en paralelo - 5000 llamadas en bloques de 500",
+          "cuantas": 5000,
+          "bloque": 500,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "81b0ca0b-54f8-4281-b192-37ac7d7be84a"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Combinación serie y paralelo - 100 serie y 200 paralelo",
+          "cuantas": 100,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "bf7aa0c0-7dd6-4e22-a4fb-149485127e92"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Combinación serie y paralelo - 200 paralelo en bloques de 20",
+          "cuantas": 200,
+          "bloque": 20,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "877b4623-f780-4559-905c-0784337e7d11"
+        }
+      ]
+    }
+  },
+  {
+    "nombre": "health 2",
+    "rutaBase": "http://localhost:3000",
+    "descripcion": {
+      "titulo": "health 2",
+      "descripcion": "Diferentes pruebas de carga, en serie y en paralelo, para la ruta /health",
+      "fecha": "2024-09-06",
+      "llamadas": [
+        {
+          "ruta": "/health",
+          "descripcion": "Carga baja en serie - 50 llamadas",
+          "cuantas": 50,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "qq",
+          "id": "58586f3a-7219-45cb-9529-6dfdd87bc775"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga media en serie - 100 llamadas",
+          "cuantas": 100,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "17686237-43b7-4707-b796-8276eaee5947"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga alta en serie - 500 llamadas",
+          "cuantas": 500,
+          "bloque": 1,
+          "tipo": "serie",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "89008712-eb17-4526-a411-bdd386a6393a"
+        },
+        {
+          "ruta": "/health",
+          "descripcion": "Carga baja en paralelo - 100 llamadas en bloques de 10",
+          "cuantas": 100,
+          "bloque": 10,
+          "tipo": "paralelo",
+          "metodo": "GET",
+          "adjunto": "",
+          "id": "89214f89-1c5c-4886-9bd2-7848099f6630"
+        }
+      ]
+    }
+  }
+]

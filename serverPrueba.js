@@ -13,6 +13,8 @@ db.exec(`
 
 const port = 3000;
 
+let contadorGeneral = 0;
+
 function simulateWork(ms) {
   const start = Date.now();
   while (Date.now() - start < ms) {
@@ -26,6 +28,8 @@ const server = Bun.serve({
     const url = new URL(req.url);
     
     if (url.pathname === '/') {
+      console.clear();
+      console.log(++contadorGeneral);
       // Simulate a random workload between 10ms and 1000ms
       // const workload = Math.floor(Math.random() * 990) + 10;
       // simulateWork(workload);
@@ -44,11 +48,11 @@ const server = Bun.serve({
       // const result = db.run(`INSERT INTO users (name) VALUES (?)`, ['John Doe']);
 
       // console.log(qq);
-Bun.sleep(200);
+// Bun.sleep(200);
 
       const query = db.query(`INSERT INTO users (name) VALUES ('${req.headers.get('User-Agent')}')`);
 const qq =  query.run();
-      console.log(qq.lastInsertRowid);
+      // console.log(qq.lastInsertRowid);
 // {
 //   lastInsertRowid: 0,
 //   changes: 0,
